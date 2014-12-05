@@ -141,7 +141,8 @@ BT_EXPORT_API int bluetooth_rfcomm_write(int fd, const char *buf, int length)
 
 	buffer = g_malloc0(length + 1);
 
-	g_strlcpy(buffer, buf, length + 1);
+	memcpy(buffer, buf, length + 1);
+	//g_strlcpy(buffer, buf, length + 1);
 
 	g_array_append_vals(in_param1, &fd, sizeof(int));
 	g_array_append_vals(in_param2, &length, sizeof(int));
